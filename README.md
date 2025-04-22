@@ -1,5 +1,17 @@
 # Serial Port Plotter
 
+
+## 概要
+
+使用 QCusromPlot 库，绘制串口数据
+
+1. 从 QSerialPort 读取数据
+2. 定时器触发 plot 绘制
+
+`重点在 mainwindow.cpp::270L 中对串口的启动和信号槽的关联代码实现`
+
+--- 
+
 This is a Windows application that displays real time data from serial port. The application is 32-bit and built with Qt and QCustomPlot library.
 
 ## Features

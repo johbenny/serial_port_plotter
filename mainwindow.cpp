@@ -274,10 +274,10 @@ void MainWindow::openPort (QSerialPortInfo portInfo, int baudRate, QSerialPort::
     connect (this, SIGNAL(portOpenOK()), this, SLOT(portOpenedSuccess()));                 // Connect port signals to GUI slots
     connect (this, SIGNAL(portOpenFail()), this, SLOT(portOpenedFail()));
     connect (this, SIGNAL(portClosed()), this, SLOT(onPortClosed()));
-    connect (this, SIGNAL(newData(QStringList)), this, SLOT(onNewDataArrived(QStringList)));
-    connect (serialPort, SIGNAL(readyRead()), this, SLOT(readData()));
+    connect (this, SIGNAL(newData(QStringList)), this, SLOT(onNewDataArrived(QStringList)));// 数据到达
+    connect (serialPort, SIGNAL(readyRead()), this, SLOT(readData()));// 基于事件驱动的串口数据读取，无需监听线程
     
-    connect (this, SIGNAL(newData(QStringList)), this, SLOT(saveStream(QStringList)));
+    connect (this, SIGNAL(newData(QStringList)), this, SLOT(saveStream(QStringList))); // 数据持久化
 
     if (serialPort->open (QIODevice::ReadWrite))
       {
